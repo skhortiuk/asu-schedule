@@ -12,8 +12,8 @@ class ScheduleBaseRestClient(BaseRestClient):
             value: str, headers: Dict = None
     ) -> api_response:
         payload = {
-            "sdate": from_date.encode(DEFAULT_ENCODING),
-            "edate": to_date.encode(DEFAULT_ENCODING),
+            "sdate": from_date.encode(DEFAULT_ENCODING) if from_date else "",
+            "edate": to_date.encode(DEFAULT_ENCODING) if to_date else "",
             self.ENTITY: value.encode(DEFAULT_ENCODING)
         }
         return await self.post(headers=headers, data=payload)
