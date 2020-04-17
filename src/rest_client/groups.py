@@ -10,4 +10,6 @@ class GroupRestClient(BaseListsClient):
 
     async def exists(self, group_code: str, faculty: int = None, headers=None):
         group_codes = await self.all_groups(headers=headers, faculty=faculty)
-        return group_code in group_codes["suggestions"]
+        return {
+            "exists": group_code in group_codes["suggestions"]
+        }
