@@ -8,7 +8,6 @@ class StatisticsHandler(logging.Handler):
     """
 
     def emit(self, record: logging.LogRecord) -> None:
-        print(record)
         self.track(record)
 
     def track(self, record):  # noqa
