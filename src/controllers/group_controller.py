@@ -12,7 +12,7 @@ async def get_all_groups(client: GroupRestClient, query: Optional[str] = None, f
 
 
 @with_rest_client(GroupRestClient)
-async def is_group_exists(client: GroupRestClient, query: str, faculty: Optional[int] = None, **kwargs):
+async def is_group_exists(client: GroupRestClient, group: str, faculty: Optional[int] = None, **kwargs):
     with external_call(client) as rest_client:
-        data, status = await rest_client.exists(group_code=query, faculty=faculty)
+        data, status = await rest_client.exists(group_code=group, faculty=faculty)
     return data, status
