@@ -1,4 +1,4 @@
-Blueprints
+## Blueprints
 ```
 /groups
     /
@@ -13,6 +13,6 @@ Blueprints
     /exists
 
 /schedule
-    /group
-    /teacher
+    /groups
+    /teachers
 ```
