@@ -11,7 +11,7 @@ def with_rest_client(rest_client, wrap_response=True):
             response, status = await func(client, *args, **kwargs)
             if wrap_response:
                 response = {
-                    "response_time": datetime.datetime.utcnow(),
+                    "response_time": datetime.datetime.utcnow().isoformat(),
                     "data": response
                 }
             return response
