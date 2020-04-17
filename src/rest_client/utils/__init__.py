@@ -3,6 +3,12 @@ import datetime
 import functools
 
 
+class ServiceUnavailableError(Exception):
+
+    def __init__(self, message):
+        self.message = message
+
+
 def with_rest_client(rest_client, wrap_response=True):
     def wrapper(func):
         @functools.wraps(func)
@@ -45,5 +51,5 @@ def external_call(rest_client, allowed_statuses=(200,), error_message="Service u
     try:
         yield wrapped_client
     finally:
-        if wrapped_client.status not in allowed_statuses:
-            raise Exception(error_message)
+        if wrapped_client.status in allowed_statuses:
+            raise ServiceUnavailableError(error_message)
