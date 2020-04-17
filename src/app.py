@@ -4,12 +4,14 @@ from fastapi import FastAPI
 from fastapi.openapi.utils import get_openapi
 from fastapi.responses import JSONResponse
 
+from src.common.errors import ParsingError
 from src.rest_client.utils import ServiceUnavailableError
 from src.routesrs import groups, teachers, schedule, faculties
 
 app = FastAPI()
 
 
+@app.exception_handler(ParsingError)
 @app.exception_handler(ServiceUnavailableError)
 async def validation_exception_handler(request, exc):
     return JSONResponse(

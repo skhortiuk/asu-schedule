@@ -2,14 +2,11 @@ import contextlib
 import datetime
 import functools
 
+from src.common.errors import BaseCustomException
 
-class ServiceUnavailableError(Exception):
 
-    def __init__(self, message):
-        self.message = message
-
-    def json(self):
-        return {"message": self.message}
+class ServiceUnavailableError(BaseCustomException):
+    pass
 
 
 def with_rest_client(rest_client, wrap_response=True):

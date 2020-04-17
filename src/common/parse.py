@@ -2,6 +2,8 @@ from collections import namedtuple
 
 from bs4 import BeautifulSoup
 
+from src.common.errors import ParsingError
+
 base_lesson = namedtuple('Base', ['date', 'verb', 'lessons'])
 lesson = namedtuple('Lesson', ['number', 'start', 'stop', 'description'])
 
@@ -37,8 +39,11 @@ def collect(containers):
 
 
 def parse(content):
-    soup = BeautifulSoup(content, 'lxml').find_all('div', class_='container')
-    containers = soup[1].find_all('div', class_='col-md-6')
-    if not containers:
-        return []
-    return collect(containers)
+    try:
+        soup = BeautifulSoup(content, 'lxml').find_all('div', class_='container')
+        containers = soup[1].find_all('div', class_='col-md-6')
+        if not containers:
+            return []
+        return collect(containers)
+    except LookupError:
+        raise ParsingError("Schedule parsing error. Try to fix the X-Schedule-Url header.") from None
