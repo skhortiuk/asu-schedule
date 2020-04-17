@@ -8,6 +8,9 @@ class ServiceUnavailableError(Exception):
     def __init__(self, message):
         self.message = message
 
+    def json(self):
+        return {"message": self.message}
+
 
 def with_rest_client(rest_client, wrap_response=True):
     def wrapper(func):

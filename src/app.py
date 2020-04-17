@@ -13,9 +13,7 @@ app = FastAPI()
 @app.exception_handler(ServiceUnavailableError)
 async def validation_exception_handler(request, exc):
     return JSONResponse(
-        status_code=INTERNAL_SERVER_ERROR, content={
-            "message": exc.message
-        }
+        status_code=INTERNAL_SERVER_ERROR, content=exc.json()
     )
 
 
