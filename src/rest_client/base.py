@@ -23,7 +23,7 @@ class BaseRestClient:
     ):
         request_url = request_url or self.destination
         params = {k: v for k, v in params.items() if v is not None} if params else None
-        data = urllib.parse.urlencode(data)
+        data = urllib.parse.urlencode(data) if data else None
         async with aiohttp.ClientSession() as session:
             async with session.request(
                     method=request_method, url=request_url, params=params, data=data, headers=headers
