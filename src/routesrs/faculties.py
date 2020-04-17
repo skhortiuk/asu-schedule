@@ -13,5 +13,5 @@ async def faculties(*, schedule_url: str = x_schedule_header):
 
 
 @router.get("/exists", tags=[tag])
-async def group_exists(*, query: str, schedule_url: str = x_schedule_header):
+async def faculty_exists(*, query: str, schedule_url: str = x_schedule_header):
     return await is_faculty_exists(schedule_url=schedule_url, query=query)
