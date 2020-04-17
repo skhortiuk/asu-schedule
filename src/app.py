@@ -7,15 +7,14 @@ app = FastAPI()
 
 
 def custom_open_api():
-    if app.openapi_schema:
-        return app.openapi_schema
-    open_api_schema = get_openapi(
-        title="Ultimate Schedule API",
-        version="1.0.0",
-        description="Provides you possibility to interact with different university's schedules.",
-        routes=app.routes,
-    )
-    app.openapi_schema = open_api_schema
+    if not app.openapi_schema:
+        open_api_schema = get_openapi(
+            title="Ultimate Schedule API",
+            version="1.0.0",
+            description="Provides you possibility to interact with different university's schedules.",
+            routes=app.routes,
+        )
+        app.openapi_schema = open_api_schema
     return app.openapi_schema
 
 
