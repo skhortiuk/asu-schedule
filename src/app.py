@@ -1,13 +1,10 @@
 from fastapi import FastAPI
 
+from src.routesrs import groups, teachers, schedule, faculties
+
 app = FastAPI()
 
-
-@app.get("/")
-async def read_root():
-    return {"Hello": "World"}
-
-
-@app.get("/items/{item_id}")
-async def read_item(item_id: int, q: str = None):
-    return {"item_id": item_id, "q": q}
+app.include_router(groups.router, prefix="/groups")
+app.include_router(teachers.router, prefix="/teachers")
+app.include_router(schedule.router, prefix="/schedule")
+app.include_router(faculties.router, prefix="/faculties")
