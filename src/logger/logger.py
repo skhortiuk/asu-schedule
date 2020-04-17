@@ -16,5 +16,3 @@ statistics_handler = StatisticsHandler(level=logging.INFO)
 logger.addHandler(stream_handler)
 logger.addHandler(statistics_handler)
 logger.setLevel(logging.DEBUG)
-
-logger.debug(12)
