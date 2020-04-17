@@ -12,12 +12,12 @@ def serialize(data):
     return [
         {
             'date': base.date, 'verbose': base.verb, 'lessons': [
-                {
-                    'number': single.number, 'from': single.start,
-                    'to': single.stop, 'description': single.description
-                }
-                for single in base.lessons
-            ]
+            {
+                'number': single.number, 'from': single.start,
+                'to': single.stop, 'description': single.description
+            }
+            for single in base.lessons
+        ]
         }
         for base in data
     ]
@@ -47,3 +47,23 @@ def parse(content):
         return collect(containers)
     except LookupError:
         raise ParsingError("Schedule parsing error. Try to fix the X-Schedule-Url header.") from None
+
+
+def parse_faculties(content: str) -> list:
+    """
+    Args:
+        content (str): Request response body
+    Returns:
+        list[dict]: list of the faculties codes and names
+    """
+    soup = BeautifulSoup(content, 'lxml')
+    form_field = soup.find('select', id='faculty')
+    options = form_field.find_all('option')[1:]
+    faculties_list = []
+    for option in options:
+        faculties_list.append({
+            'name': option.text,
+            'code': int(option['value'])
+        })
+
+    return faculties_list
