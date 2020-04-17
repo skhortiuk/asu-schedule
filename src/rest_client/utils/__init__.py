@@ -8,7 +8,7 @@ def with_rest_client(rest_client, wrap_response=True):
         @functools.wraps(func)
         async def inner(*args, **kwargs):
             client = rest_client(kwargs["schedule_url"])
-            response = await func(client, *args, **kwargs)
+            response, status = await func(client, *args, **kwargs)
             if wrap_response:
                 response = {
                     "response_time": datetime.datetime.utcnow(),
