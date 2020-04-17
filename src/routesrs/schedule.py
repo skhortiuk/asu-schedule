@@ -1,12 +1,13 @@
 from fastapi import APIRouter
 
 from src.controllers.schedule_controller import get_group_schedule, get_teacher_schedule
-from src.routesrs.schema import x_schedule_header
+from src.schemas.schema import x_schedule_header
 
+tag = "Schedule"
 router = APIRouter()
 
 
-@router.get("/groups")
+@router.get("/groups", tags=[tag])
 async def groups_schedule(
         *, value: str, date_from: str, date_to: str,
         schedule_url: str = x_schedule_header
@@ -16,7 +17,7 @@ async def groups_schedule(
     )
 
 
-@router.get("/teachers")
+@router.get("/teachers", tags=[tag])
 async def teachers_schedule(
         *, value: str, date_from: str, date_to: str,
         schedule_url: str = x_schedule_header

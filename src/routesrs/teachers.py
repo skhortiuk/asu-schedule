@@ -3,17 +3,18 @@ from typing import Optional
 from fastapi import APIRouter
 
 from src.controllers.teacher_controller import get_all_teachers, is_teacher_exists
-from src.routesrs.schema import x_schedule_header
+from src.schemas.schema import x_schedule_header
 
+tag = "Teachers"
 router = APIRouter()
 
 
-@router.get("")
+@router.get("", tags=[tag])
 async def teacher(*, query: Optional[str] = None, faculty: Optional[int] = None, schedule_url: str = x_schedule_header):
     return await get_all_teachers(schedule_url=schedule_url, faculty=faculty, query=query)
 
 
-@router.get("/exists")
+@router.get("/exists", tags=[tag])
 async def teacher_exists(
         *, query: Optional[str] = None,
         faculty: Optional[int] = None, schedule_url: str = x_schedule_header
