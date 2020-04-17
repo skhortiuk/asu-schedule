@@ -29,6 +29,9 @@ class BaseRestClient:
                     method=request_method, url=request_url, params=params, data=data, headers=headers
             ) as response:
                 try:
-                    return await response.json(encoding=DEFAULT_ENCODING, content_type="text/html")
+                    return (
+                        await response.json(encoding=DEFAULT_ENCODING, content_type="text/html"),
+                        response.status
+                    )
                 except JSONDecodeError:
                     return await response.text(encoding=DEFAULT_ENCODING), response.status
