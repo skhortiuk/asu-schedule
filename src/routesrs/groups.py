@@ -14,5 +14,5 @@ async def groups(*, query: Optional[str] = None, faculty: Optional[int] = None, 
 
 
 @router.get("/exists")
-async def group_exists(*, query: str, faculty: str, schedule_url: str = x_schedule_header):
-    return await is_group_exists(query=query, faculty=faculty, schedule_url=schedule_url)
+async def group_exists(*, query: str, faculty: Optional[str] = None, schedule_url: str = x_schedule_header):
+    return await is_group_exists(schedule_url=schedule_url, query=query, faculty=faculty)
