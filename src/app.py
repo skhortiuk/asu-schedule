@@ -5,6 +5,7 @@ from fastapi.openapi.utils import get_openapi
 from fastapi.responses import JSONResponse
 
 from src.common.errors import ParsingError
+from src.logger.logger import logger
 from src.rest_client.utils import ServiceUnavailableError
 from src.routesrs import groups, teachers, schedule, faculties
 
@@ -14,6 +15,7 @@ app = FastAPI()
 @app.exception_handler(ParsingError)
 @app.exception_handler(ServiceUnavailableError)
 async def validation_exception_handler(request, exc):
+    logger.exception(exc)
     return JSONResponse(
         status_code=INTERNAL_SERVER_ERROR, content=exc.json()
     )
