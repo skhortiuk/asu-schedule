@@ -9,18 +9,17 @@ lesson = namedtuple('Lesson', ['number', 'start', 'stop', 'description'])
 
 
 def serialize(data):
-    return [
-        {
-            'date': base.date, 'verbose': base.verb, 'lessons': [
-            {
+    schedule = []
+    for base in data:
+        payload = {'date': base.date, 'verbose': base.verb, 'lessons': []}
+        for single in base.lessons:
+            payload["lessons"].append({
                 'number': single.number, 'from': single.start,
                 'to': single.stop, 'description': single.description
-            }
-            for single in base.lessons
-        ]
-        }
-        for base in data
-    ]
+            })
+        schedule.append(payload)
+
+    return schedule
 
 
 def collect(containers):

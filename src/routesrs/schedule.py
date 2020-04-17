@@ -1,3 +1,5 @@
+from typing import Optional
+
 from fastapi import APIRouter
 
 from src.controllers.schedule_controller import get_group_schedule, get_teacher_schedule
@@ -9,7 +11,7 @@ router = APIRouter()
 
 @router.get("/groups", tags=[tag])
 async def groups_schedule(
-        *, value: str, date_from: str, date_to: str,
+        *, value: str, date_from: Optional[str] = None, date_to: Optional[str] = None,
         schedule_url: str = x_schedule_header
 ):
     return await get_group_schedule(
@@ -19,7 +21,7 @@ async def groups_schedule(
 
 @router.get("/teachers", tags=[tag])
 async def teachers_schedule(
-        *, value: str, date_from: str, date_to: str,
+        *, value: str, date_from: Optional[str] = None, date_to: Optional[str] = None,
         schedule_url: str = x_schedule_header
 ):
     return await get_teacher_schedule(
