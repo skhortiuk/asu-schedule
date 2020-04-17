@@ -2,7 +2,7 @@ import datetime
 import functools
 
 
-def with_rest_client(rest_client, wrap_response=False):
+def with_rest_client(rest_client, wrap_response=True):
     def wrapper(func):
         @functools.wraps(func)
         async def inner(*args, **kwargs):
