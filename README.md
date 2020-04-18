@@ -1,8 +1,6 @@
 # Ultimate Schedule API
 
-![Python application](https://github.com/skhortiuk/asu-schedule/workflows/Python%20application/badge.svg?branch=master)
-
-[![codecov](https://codecov.io/gh/skhortiuk/asu-schedule/branch/master/graph/badge.svg)](https://codecov.io/gh/skhortiuk/asu-schedule)
+![Python application](https://github.com/skhortiuk/asu-schedule/workflows/Python%20application/badge.svg?branch=master) [![codecov](https://codecov.io/gh/skhortiuk/asu-schedule/branch/master/graph/badge.svg)](https://codecov.io/gh/skhortiuk/asu-schedule)
 
 
 ## About
