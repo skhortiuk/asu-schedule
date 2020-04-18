@@ -11,7 +11,7 @@ class FacultiesRestClient(BaseRestClient):
         faculties, status = await self.all_faculties(headers=headers, query=query)
         exists = False
         for faculty in faculties:
-            if query == faculty.get('name', ""):
+            if query == faculty.get("name", ""):
                 exists = True
                 break
-        return {"exists": exists},   status
+        return {"exists": exists}, status
