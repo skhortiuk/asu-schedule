@@ -35,3 +35,6 @@ jobs:
       run: |
         pip install pytest
         pytest
+    - name: Black check
+      run: |
+        black --check src/
