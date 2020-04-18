@@ -13,7 +13,6 @@ async def get_all_groups(
 ):
     with external_call(client) as rest_client:
         data, status = await rest_client.all_groups(query=query, faculty=faculty)
-        print(data)
     return data["suggestions"], status
 
 
