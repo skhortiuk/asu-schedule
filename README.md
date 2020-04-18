@@ -2,6 +2,9 @@
 
 ![Python application](https://github.com/skhortiuk/asu-schedule/workflows/Python%20application/badge.svg?branch=master)
 
+[![codecov](https://codecov.io/gh/skhortiuk/asu-schedule/branch/master/graph/badge.svg)](https://codecov.io/gh/skhortiuk/asu-schedule)
+
+
 ## About
 As far as you know, a lot of universities uses the "ПС-Розклад" system to share schedule among the students.
 It's really good when you're the user, not developer. Many developers/students want to use schedule from mentioned 
