@@ -15,6 +15,10 @@ def record_factory(*args, **kwargs):
     return record
 
 
+def track(self, message, level="info"):
+    getattr(self, level)("Stats " + message)
+
+
 formatter = logging.Formatter(
     fmt="Time: [{asctime}], Level: {levelname}, FIle: {filename}, Line {lineno}, Message: {message}",
     style="{",
@@ -31,3 +35,4 @@ logger.addHandler(statistics_handler)
 logger.setLevel(logging.DEBUG)
 
 logging.setLogRecordFactory(record_factory)
+logging.Logger.track = track
