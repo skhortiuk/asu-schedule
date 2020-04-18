@@ -1,6 +1,7 @@
 from http.client import INTERNAL_SERVER_ERROR
 
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.openapi.utils import get_openapi
 from fastapi.responses import JSONResponse
 
@@ -34,6 +35,7 @@ def custom_open_api():
 
 app.openapi = custom_open_api
 app.middleware("http")(statistics_middleware)
+app.add_middleware(CORSMiddleware, allow_origins=["*"])
 app.include_router(groups.router, prefix="/groups")
 app.include_router(teachers.router, prefix="/teachers")
 app.include_router(schedule.router, prefix="/schedule")
