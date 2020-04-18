@@ -18,7 +18,7 @@ def with_rest_client(rest_client, wrap_response=True):
             if wrap_response:
                 response = {
                     "response_time": datetime.datetime.utcnow().isoformat(),
-                    "data": response
+                    "data": response,
                 }
             return response
 
@@ -28,7 +28,6 @@ def with_rest_client(rest_client, wrap_response=True):
 
 
 class WrappedRestClient:
-
     def __init__(self, rest_client):
         self.data = None
         self.status = None
@@ -46,7 +45,9 @@ class WrappedRestClient:
 
 
 @contextlib.contextmanager
-def external_call(rest_client, allowed_statuses=(200,), error_message="Service unavailable."):
+def external_call(
+    rest_client, allowed_statuses=(200,), error_message="Service unavailable."
+):
     wrapped_client = WrappedRestClient(rest_client)
     try:
         yield wrapped_client

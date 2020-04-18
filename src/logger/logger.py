@@ -4,7 +4,8 @@ from src.logger.handlers import StatisticsHandler
 
 logger = logging.getLogger(__name__)
 formatter = logging.Formatter(
-    fmt="Time: [{asctime}], Level: {levelname}, FIle: {filename}, Line {lineno}, Message: {message}", style="{"
+    fmt="Time: [{asctime}], Level: {levelname}, FIle: {filename}, Line {lineno}, Message: {message}",
+    style="{",
 )
 
 stream_handler = logging.StreamHandler()

@@ -9,8 +9,5 @@ class BaseListsClient(BaseRestClient):
     REQUEST_AJAX_FLAG: NotImplemented
 
     async def get(self, headers: Dict = None, **params) -> api_response:
-        params.update({
-            "n": self.AJAX_ID,
-            "lev": self.REQUEST_AJAX_FLAG
-        })
+        params.update({"n": self.AJAX_ID, "lev": self.REQUEST_AJAX_FLAG})
         return await super(BaseListsClient, self).get(headers=headers, **params)
