@@ -20,6 +20,4 @@ async def is_faculty_exists(client: FacultiesRestClient, query: str, **kwargs):
         if query in faculty["name"]:
             exists = True
             break
-    return {
-               "exists": exists
-           }, status
+    return {"exists": exists}, status

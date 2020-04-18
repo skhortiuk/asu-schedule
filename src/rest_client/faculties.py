@@ -9,6 +9,4 @@ class FacultiesRestClient(BaseRestClient):
 
     async def exists(self, query: str, headers=None):
         faculties, status = await self.all_faculties(headers=headers, query=query)
-        return {
-                   "exists": query in faculties["suggestions"]
-               }, status
+        return {"exists": query in faculties["suggestions"]}, status
