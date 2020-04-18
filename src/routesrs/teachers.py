@@ -28,7 +28,7 @@ async def teacher(
 @track(fmt="query={query}, faculty={faculty}", event=Events.IS_TEACHER_EXISTS)
 async def teacher_exists(
     *,
-    query: Optional[str] = None,
+    query: str,
     faculty: Optional[int] = None,
     schedule_url: str = x_schedule_header
 ):
