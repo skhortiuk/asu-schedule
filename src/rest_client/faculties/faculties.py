@@ -14,4 +14,4 @@ class FacultiesRestClient(BaseRestClient):
             if query == faculty.get("name", ""):
                 exists = True
                 break
-        return {"exists": exists}, status
+        return {"exists": exists},   status
