@@ -1,6 +1,6 @@
 from src.common.parse import parse
-from src.rest_client.groups_schedule import GroupScheduleRestClient
-from src.rest_client.teachers_schedule import TeacherScheduleRestClient
+from src.rest_client.schedule.groups_schedule import GroupScheduleRestClient
+from src.rest_client.schedule.teachers_schedule import TeacherScheduleRestClient
 from src.rest_client.utils import with_rest_client, external_call
 
 

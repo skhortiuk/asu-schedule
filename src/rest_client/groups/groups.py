@@ -1,11 +1,11 @@
 from typing import Dict, Optional
 
 from src.rest_client.base import api_response
-from src.rest_client.base_lists_client import BaseListsClient
+from src.rest_client.base_metadata_client import BaseMetadataClient
 from src.rest_client.config import GROUPS_AJAX_FLAG
 
 
-class GroupRestClient(BaseListsClient):
+class GroupRestClient(BaseMetadataClient):
     REQUEST_AJAX_FLAG = GROUPS_AJAX_FLAG
 
     async def all_groups(
