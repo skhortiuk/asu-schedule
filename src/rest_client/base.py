@@ -2,6 +2,7 @@ import urllib.parse
 from json.decoder import JSONDecodeError
 from typing import Union, Tuple, Dict, AnyStr
 from urllib.parse import urljoin, urlparse
+
 import aiohttp
 
 from src.rest_client.config import DEFAULT_ENCODING
