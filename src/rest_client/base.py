@@ -1,6 +1,7 @@
 import urllib.parse
 from json.decoder import JSONDecodeError
 from typing import Union, Tuple, Dict, AnyStr
+from urllib.parse import urljoin, urlparse
 
 import aiohttp
 
@@ -46,6 +47,10 @@ class BaseRestClient:
             request_method, request_url, headers, data, json, params
         )
 
+    def _format_request_url(self, request_url: str = None):
+        url = request_url or self.destination
+        return urljoin(url, urlparse(url).path)
+
     async def _make_http_request(
         self,
         request_method: str,
@@ -56,9 +61,9 @@ class BaseRestClient:
         params: Dict = None,
         mime_type: str = None,
     ) -> api_response:
-        request_url = request_url or self.destination
         params = {k: v for k, v in params.items() if v is not None} if params else None
         data = urllib.parse.urlencode(data) if data else None
+        request_url = self._format_request_url(request_url)
         async with aiohttp.ClientSession() as session:
             async with session.request(
                 method=request_method,
