@@ -31,7 +31,9 @@ def track(self, message, *, event_type, level="info"):
         logger.track("Schedule requested.", event_type="Schedule Request")
     """
     ip_address = client_ip.get()
-    getattr(self, level)("Stats " + message, extra={"ip": ip_address, "event_type": event_type})
+    getattr(self, level)(
+        "Stats " + message, extra={"ip": ip_address, "event_type": event_type}
+    )
 
 
 formatter = logging.Formatter(
