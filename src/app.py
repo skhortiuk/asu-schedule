@@ -3,13 +3,13 @@ from http.client import INTERNAL_SERVER_ERROR
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.openapi.utils import get_openapi
-from fastapi.responses import JSONResponse, RedirectResponse
+from fastapi.responses import JSONResponse
 
 from src.common.errors import ParsingError
 from src.logger.logger import logger
 from src.middlewares.statistics import statistics_middleware
 from src.rest_client.utils import ServiceUnavailableError
-from src.routes import groups, teachers, schedule, faculties
+from src.routes.v1.api import router_v1
 
 app = FastAPI(docs_url="/")
 
@@ -36,7 +36,4 @@ def custom_open_api():
 app.openapi = custom_open_api
 app.middleware("http")(statistics_middleware)
 app.add_middleware(CORSMiddleware, allow_origins=["*"])
-app.include_router(groups.router, prefix="/groups")
-app.include_router(teachers.router, prefix="/teachers")
-app.include_router(schedule.router, prefix="/schedule")
-app.include_router(faculties.router, prefix="/faculties")
+app.include_router(router_v1, prefix="/v1")
