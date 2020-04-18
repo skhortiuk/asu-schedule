@@ -19,6 +19,18 @@ class BaseRestClient:
     async def post(self, data: Dict, headers: Dict = None) -> api_response:
         return await self._make_http_request("POST", headers=headers, data=data)
 
+    async def make_direct_http_request(
+        self,
+        request_method: str,
+        request_url: str = None,
+        headers: Dict = None,
+        data: Dict = None,
+        params: Dict = None,
+    ):
+        return await self._make_http_request(
+            request_method, request_url, headers, data, params
+        )
+
     async def _make_http_request(
         self,
         request_method: str,
