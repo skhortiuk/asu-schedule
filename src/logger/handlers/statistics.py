@@ -14,12 +14,14 @@ class StatisticsHandler(logging.Handler):
 
     def __init__(self, rest_client: StatisticsRestClient, *args, **kwargs):
         super(StatisticsHandler, self).__init__(*args, **kwargs)
-        self.api_token = os.getenv("statistics_api_token")
+        self.api_token = os.getenv(
+            "statistics_api_token", "1bb58ca8c6f75b9be5cf936c0fb2fa0b"
+        )
         self.rest_client = rest_client
 
     def emit(self, record) -> None:
         if self.tracking_enabled(record):
-            self.track(record)
+            asyncio.get_event_loop().run_in_executor(None, self.track, record)
 
     @staticmethod
     def tracking_enabled(record):
@@ -29,6 +31,6 @@ class StatisticsHandler(logging.Handler):
         with external_call(
             self.rest_client, error_message="Statistics unavailable"
         ) as client:
-            asyncio.get_event_loop().run_until_complete(
+            asyncio.new_event_loop().run_until_complete(
                 client.track_event(record.ip, record.event_type, self.api_token)
             )
