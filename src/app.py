@@ -3,7 +3,7 @@ from http.client import INTERNAL_SERVER_ERROR
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.openapi.utils import get_openapi
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, RedirectResponse
 
 from src.common.errors import ParsingError
 from src.logger.logger import logger
@@ -40,3 +40,8 @@ app.include_router(groups.router, prefix="/groups")
 app.include_router(teachers.router, prefix="/teachers")
 app.include_router(schedule.router, prefix="/schedule")
 app.include_router(faculties.router, prefix="/faculties")
+
+
+@app.get("/")
+async def docs_redirect():
+    return RedirectResponse("/docs")
