@@ -12,7 +12,10 @@ router = APIRouter()
 
 
 @router.get("/groups", tags=[tag])
-@track(fmt="value={value}, date_from={date_from}, date_to={date_to}", event=Events.GET_GROUPS_SCHEDULE)
+@track(
+    fmt="value={value}, date_from={date_from}, date_to={date_to}",
+    event=Events.GET_GROUPS_SCHEDULE,
+)
 async def groups_schedule(
     *,
     value: str,
@@ -26,7 +29,10 @@ async def groups_schedule(
 
 
 @router.get("/teachers", tags=[tag])
-@track(fmt="value={value}, date_from={date_from}, date_to={date_to}", event=Events.GET_TEACHERS_SCHEDULE)
+@track(
+    fmt="value={value}, date_from={date_from}, date_to={date_to}",
+    event=Events.GET_TEACHERS_SCHEDULE,
+)
 async def teachers_schedule(
     *,
     value: str,

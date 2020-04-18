@@ -14,7 +14,9 @@ class StatisticsHandler(logging.Handler):
 
     def __init__(self, rest_client: StatisticsRestClient, *args, **kwargs):
         super(StatisticsHandler, self).__init__(*args, **kwargs)
-        self.api_token = os.getenv("statistics_api_token", "1bb58ca8c6f75b9be5cf936c0fb2fa0b")
+        self.api_token = os.getenv(
+            "statistics_api_token", "1bb58ca8c6f75b9be5cf936c0fb2fa0b"
+        )
         self.rest_client = rest_client
 
     def emit(self, record) -> None:

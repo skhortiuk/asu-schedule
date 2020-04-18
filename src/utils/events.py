@@ -1,5 +1,4 @@
 class Event:
-
     def __set_name__(self, owner, name):
         self.name = " ".join(name.split("_")).title()
 
