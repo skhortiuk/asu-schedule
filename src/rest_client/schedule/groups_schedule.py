@@ -1,4 +1,4 @@
-from src.rest_client.base_schedule_client import ScheduleBaseRestClient
+from src.rest_client.schedule.base import ScheduleBaseRestClient
 
 
 class GroupScheduleRestClient(ScheduleBaseRestClient):

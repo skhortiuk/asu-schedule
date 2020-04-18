@@ -2,7 +2,7 @@ import asyncio
 import logging
 import os
 
-from src.rest_client.statistics import StatisticsRestClient
+from src.rest_client.statistics.statistics import StatisticsRestClient
 from src.rest_client.utils import external_call
 
 

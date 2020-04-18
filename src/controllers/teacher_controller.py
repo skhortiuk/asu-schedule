@@ -1,6 +1,6 @@
 from typing import Optional
 
-from src.rest_client.teachers import TeachersRestClient
+from src.rest_client.teachers.teachers import TeachersRestClient
 from src.rest_client.utils import with_rest_client, external_call
 
 

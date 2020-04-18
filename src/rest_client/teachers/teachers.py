@@ -1,11 +1,11 @@
 from typing import Dict
 
 from src.rest_client.base import api_response
-from src.rest_client.base_lists_client import BaseListsClient
+from src.rest_client.base_metadata_client import BaseMetadataClient
 from src.rest_client.config import TEACHERS_AJAX_FLAG
 
 
-class TeachersRestClient(BaseListsClient):
+class TeachersRestClient(BaseMetadataClient):
     REQUEST_AJAX_FLAG = TEACHERS_AJAX_FLAG
 
     async def all_teachers(
