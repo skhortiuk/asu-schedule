@@ -6,6 +6,7 @@ from fastapi.responses import JSONResponse
 
 from src.common.errors import ParsingError
 from src.logger.logger import logger
+from src.middlewares.statistics import statistics_middleware
 from src.rest_client.utils import ServiceUnavailableError
 from src.routesrs import groups, teachers, schedule, faculties
 
@@ -32,6 +33,7 @@ def custom_open_api():
 
 
 app.openapi = custom_open_api
+app.middleware("http")(statistics_middleware)
 app.include_router(groups.router, prefix="/groups")
 app.include_router(teachers.router, prefix="/teachers")
 app.include_router(schedule.router, prefix="/schedule")

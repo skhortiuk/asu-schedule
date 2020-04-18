@@ -1,6 +1,7 @@
 import logging
 
 from src.logger.handlers.statistics import StatisticsHandler
+from src.middlewares.statistics import client_ip
 from src.rest_client.config import STATISTICS_URL
 from src.rest_client.statistics.statistics import StatisticsRestClient
 
@@ -17,7 +18,7 @@ def record_factory(*args, **kwargs):
     return record
 
 
-def track(self, message, *, ip, event_type, level="info"):
+def track(self, message, *, event_type, level="info"):
     """
     Include the message to statistic.
     :param self: logger instance
@@ -27,9 +28,12 @@ def track(self, message, *, ip, event_type, level="info"):
     :param level: log level
 
     Example:
-        logger.track("Schedule requested.", ip=<user ip address>, event_type="Schedule Request")
+        logger.track("Schedule requested.", event_type="Schedule Request")
     """
-    getattr(self, level)("Stats " + message, extra={"ip": ip, "event_type": event_type})
+    ip_address = client_ip.get()
+    getattr(self, level)(
+        "Stats " + message, extra={"ip": ip_address, "event_type": event_type}
+    )
 
 
 formatter = logging.Formatter(
@@ -44,6 +48,7 @@ stream_handler.setFormatter(formatter)
 statistics_handler = StatisticsHandler(
     level=logging.INFO, rest_client=StatisticsRestClient(destination=STATISTICS_URL)
 )
+statistics_handler.setFormatter(formatter)
 
 logger.addHandler(stream_handler)
 logger.addHandler(statistics_handler)
