@@ -1,3 +1,5 @@
+# Ultimate Schedule API
+
 ![Python application](https://github.com/skhortiuk/asu-schedule/workflows/Python%20application/badge.svg?branch=master)
 
 ## About
