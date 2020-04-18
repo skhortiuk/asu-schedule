@@ -27,10 +27,7 @@ async def teacher(
 @router.get("/exists", tags=[tag])
 @track(fmt="query={query}, faculty={faculty}", event=Events.IS_TEACHER_EXISTS)
 async def teacher_exists(
-    *,
-    query: str,
-    faculty: Optional[int] = None,
-    schedule_url: str = x_schedule_header
+    *, query: str, faculty: Optional[int] = None, schedule_url: str = x_schedule_header
 ):
     return await is_teacher_exists(
         schedule_url=schedule_url, teacher=query, faculty=faculty
