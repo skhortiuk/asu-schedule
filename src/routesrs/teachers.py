@@ -3,7 +3,6 @@ from typing import Optional
 from fastapi import APIRouter
 
 from src.controllers.teacher_controller import get_all_teachers, is_teacher_exists
-from src.logger.logger import logger
 from src.schemas.schema import x_schedule_header
 
 tag = "Teachers"
@@ -17,7 +16,6 @@ async def teacher(
     faculty: Optional[int] = None,
     schedule_url: str = x_schedule_header
 ):
-    logger.track("test", event_type="535345")
     return await get_all_teachers(
         schedule_url=schedule_url, faculty=faculty, query=query
     )
