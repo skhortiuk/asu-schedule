@@ -1,4 +1,4 @@
-from src.rest_client.faculties import FacultiesRestClient
+from src.rest_client.faculties.faculties import FacultiesRestClient
 from src.rest_client.utils import with_rest_client, external_call
 from src.common.parse import parse_faculties
 

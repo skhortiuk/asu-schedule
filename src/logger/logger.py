@@ -2,7 +2,7 @@ import logging
 
 from src.logger.handlers.statistics import StatisticsHandler
 from src.rest_client.config import STATISTICS_URL
-from src.rest_client.statistics import StatisticsRestClient
+from src.rest_client.statistics.statistics import StatisticsRestClient
 
 logger = logging.getLogger(__name__)
 old_factory = logging.getLogRecordFactory()

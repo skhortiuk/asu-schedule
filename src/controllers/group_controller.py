@@ -1,6 +1,6 @@
 from typing import Optional
 
-from src.rest_client.groups import GroupRestClient
+from src.rest_client.groups.groups import GroupRestClient
 from src.rest_client.utils import with_rest_client, external_call
 
 
