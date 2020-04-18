@@ -23,7 +23,6 @@ def track(self, message, *, event_type, level="info"):
     Include the message to statistic.
     :param self: logger instance
     :param message: message to be logged (won't be a part of statistic)
-    :param ip: IP address of user
     :param event_type: Desired event type
     :param level: log level
 
