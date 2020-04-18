@@ -40,5 +40,5 @@ jobs:
         black --check src/
     - name: Coverage
       run: |
-        pytest --cov=src --cov-fail-under=80 --cov-branch --cov-report xml:cov-report tests/
+        pytest --cov=src --cov-branch --cov-report xml:cov-report tests/
         bash <(curl -s https://codecov.io/bash) -f cov-report
