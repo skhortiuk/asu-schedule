@@ -8,7 +8,12 @@ class StatisticsHandler(logging.Handler):
     """
 
     def emit(self, record: logging.LogRecord) -> None:
-        self.track(record)
+        if self.tracking_enabled(record):
+            self.track(record)
+
+    @staticmethod
+    def tracking_enabled(record):
+        return getattr(record, "track", False)
 
     def track(self, record):  # noqa
         return NotImplemented
