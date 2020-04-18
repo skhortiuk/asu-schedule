@@ -38,3 +38,6 @@ jobs:
     - name: Black check
       run: |
         black --check src/
+    - name: Coverage
+      run: |
+        pytest --cov=src --cov-fail-under=80 --cov-branch tests/
