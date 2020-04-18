@@ -25,6 +25,9 @@ def track(self, message, *, ip, event_type, level="info"):
     :param ip: IP address of user
     :param event_type: Desired event type
     :param level: log level
+
+    Example:
+        logger.track("Schedule requested.", ip=<user ip address>, event_type="Schedule Request")
     """
     getattr(self, level)("Stats " + message, extra={"ip": ip, "event_type": event_type})
 
