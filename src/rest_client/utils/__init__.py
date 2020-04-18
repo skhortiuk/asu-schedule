@@ -6,7 +6,17 @@ from src.common.errors import BaseCustomException
 
 
 class ServiceUnavailableError(BaseCustomException):
-    pass
+    def __init__(self, message, status, response):
+        super(ServiceUnavailableError, self).__init__(message)
+        self.status = status
+        self.response = response
+
+    def json(self):
+        return {
+            "message": self.message,
+            "status": self.status,
+            "response": self.response,
+        }
 
 
 def with_rest_client(rest_client, wrap_response=True):
@@ -53,4 +63,8 @@ def external_call(
         yield wrapped_client
     finally:
         if wrapped_client.status not in allowed_statuses:
-            raise ServiceUnavailableError(error_message)
+            raise ServiceUnavailableError(
+                error_message,
+                status=wrapped_client.status,
+                response=wrapped_client.data,
+            )

@@ -16,8 +16,12 @@ class BaseRestClient:
     async def get(self, headers: Dict = None, **params) -> api_response:
         return await self._make_http_request("GET", headers=headers, params=params)
 
-    async def post(self, data: Dict, headers: Dict = None) -> api_response:
-        return await self._make_http_request("POST", headers=headers, data=data)
+    async def post(
+        self, data: Dict = None, json: Dict = None, headers: Dict = None, mime_type=None
+    ) -> api_response:
+        return await self._make_http_request(
+            "POST", headers=headers, data=data, json=json, mime_type=mime_type
+        )
 
     async def make_direct_http_request(
         self,
@@ -25,10 +29,11 @@ class BaseRestClient:
         request_url: str = None,
         headers: Dict = None,
         data: Dict = None,
+        json: Dict = None,
         params: Dict = None,
     ):
         return await self._make_http_request(
-            request_method, request_url, headers, data, params
+            request_method, request_url, headers, data, json, params
         )
 
     async def _make_http_request(
@@ -37,7 +42,9 @@ class BaseRestClient:
         request_url: str = None,
         headers: Dict = None,
         data: Dict = None,
+        json: Dict = None,
         params: Dict = None,
+        mime_type: str = None,
     ) -> api_response:
         request_url = request_url or self.destination
         params = {k: v for k, v in params.items() if v is not None} if params else None
@@ -48,12 +55,14 @@ class BaseRestClient:
                 url=request_url,
                 params=params,
                 data=data,
+                json=json,
                 headers=headers,
             ) as response:
                 try:
                     return (
                         await response.json(
-                            encoding=DEFAULT_ENCODING, content_type="text/html"
+                            encoding=DEFAULT_ENCODING,
+                            content_type=mime_type or "text/html",
                         ),
                         response.status,
                     )
