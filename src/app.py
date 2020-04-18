@@ -9,7 +9,7 @@ from src.common.errors import ParsingError
 from src.logger.logger import logger
 from src.middlewares.statistics import statistics_middleware
 from src.rest_client.utils import ServiceUnavailableError
-from src.routesrs import groups, teachers, schedule, faculties
+from src.routes import groups, teachers, schedule, faculties
 
 app = FastAPI(docs_url="/")
 
