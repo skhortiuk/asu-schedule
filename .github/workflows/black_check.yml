@@ -17,4 +17,4 @@ jobs:
         uses: jpetrucciani/black-check@19.10b0
         with:
           # File or directory to run black on
-          path: "./src"
+          path: 'src'
