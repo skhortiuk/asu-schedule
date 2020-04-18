@@ -48,6 +48,11 @@ class BaseRestClient:
         )
 
     def _format_request_url(self, request_url: str = None):
+        """
+        Remove query params from url.
+        :param request_url: URL
+        :return: stripped url
+        """
         url = request_url or self.destination
         return urljoin(url, urlparse(url).path)
 
