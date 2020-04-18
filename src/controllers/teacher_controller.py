@@ -13,7 +13,7 @@ async def get_all_teachers(
 ):
     with external_call(client) as rest_client:
         data, status = await rest_client.all_teachers(faculty=faculty, query=query)
-    return data, status
+    return data["suggestions"], status
 
 
 @with_rest_client(TeachersRestClient)
