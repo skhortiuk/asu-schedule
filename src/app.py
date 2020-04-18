@@ -11,7 +11,7 @@ from src.middlewares.statistics import statistics_middleware
 from src.rest_client.utils import ServiceUnavailableError
 from src.routesrs import groups, teachers, schedule, faculties
 
-app = FastAPI()
+app = FastAPI(docs_url="/")
 
 
 @app.exception_handler(ParsingError)
@@ -40,8 +40,3 @@ app.include_router(groups.router, prefix="/groups")
 app.include_router(teachers.router, prefix="/teachers")
 app.include_router(schedule.router, prefix="/schedule")
 app.include_router(faculties.router, prefix="/faculties")
-
-
-@app.get("/")
-async def docs_redirect():
-    return RedirectResponse("/docs")
