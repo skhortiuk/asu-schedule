@@ -20,7 +20,7 @@ multidict==4.7.5
 packaging==20.3
 pathspec==0.8.0
 pluggy==0.13.1
-py==1.8.1
+py==1.10.0
 pydantic==1.4
 pyparsing==2.4.7
 pytest==5.4.1
